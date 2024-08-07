@@ -1,6 +1,5 @@
 import sys
 failed = []
-p = 1
 def check(board, n):
     queens = set()
     diag = set()
@@ -21,7 +20,6 @@ def runTwo(n):
     i = 2
     y = n // 2 - 1
     board = []
-    c = 0
     while y < n:
         board.append(y)
         y += i
@@ -76,70 +74,68 @@ def runThree(n):
         failed.append(n)
     return board
 
+def runOther(n):
+    i = 2
+    while True:
+        board = []
+        y = 1
+        if n % 2 != 0:
+            y = 0
+        while y < n:
+            board.append(y)
+            y += i
+        if (i == 2) and (n % 2 == 0):
+            y = 0
+        elif (i == 2):
+            y = 1
+        elif (y == n-1):
+            y = n - i + 1
+        else:
+            y = n - i
+        while y >= 0 and (n % 6 != 5 and n % 6 != 0) and i != 2:
+            board.append(y)
+            y -= i
+        while i == 2 and y < len(board) and n % 6 != 5 and n % 6 != 0:
+            board.append(y)
+            y += 2
+        if y == 0:
+            y = 2
+        elif n % 2 != 0:
+            y = 1
+        else:
+            y = 0
+        if (n % 6 == 5):
+            y = 1
+        elif n % 6 == 0:
+            y = 0
+        while y < n and (n % 6 == 5 or n % 6 == 0):
+            board.append(y)
+            y += i
+        if n % 6 == 5 or n % 6 == 0:
+            y = 2
+        while len(board) < n:
+            board.append(y)
+            y += i
+        if(not check(board, n)):
+            i += 1
+            if i > n:
+                print("GAVEUPGAVEUPGAVEUPGAVEUPGAVEUP")
+                failed.append(n)
+                return board
+        else:
+            return board
 def run(start, end):
-    while start != end:
-        boo = True
-        i = 2
-        n = start
+    n = start
+    while n != end:
         if (n % 6 == 2):
             board = runTwo(n)
-            boo = False
         elif (n % 6 == 3):
             board = runThree(n)
-            boo = False
-
-        while (boo):
-            n = start
-            board = []
-            y = 1
-            if n % 2 != 0:
-                y = 0
-            while y < n:
-                board.append(y)
-                y += i
-            if (i == 2) and (n % 2 == 0):
-                y = 0
-            elif (i == 2):
-                y = 1
-            elif (y == n-1):
-                y = n - i + 1
-            else:
-                y = n - i
-            while y >= 0 and (n % 6 != 5 and n % 6 != 0) and i != 2:
-                board.append(y)
-                y -= i
-            while i == 2 and y < len(board) and n % 6 != 5 and n % 6 != 0:
-                board.append(y)
-                y += 2
-            if y == 0:
-                y = 2
-            elif n % 2 != 0:
-                y = 1
-            else:
-                y = 0
-            if (n % 6 == 5):
-                y = 1
-            elif n % 6 == 0:
-                y = 0
-            while y < n and (n % 6 == 5 or n % 6 == 0):
-                board.append(y)
-                y += i
-            if n % 6 == 5 or n % 6 == 0:
-                y = 2
-            while len(board) < n:
-                board.append(y)
-                y += i
-            if(not check(board, n)):
-                i += 1
-                if i > n:
-                    print("GAVEUPGAVEUPGAVEUPGAVEUPGAVEUP")
-                    failed.append(n)
-                    boo = False
-            else:
-                boo = False
+        else:
+            board = runOther(n)
         print(n)
         print(board)
-        start += 1
+        n += 1
 
 while True:
     user = input("Choose starting number (inclusive): ")
