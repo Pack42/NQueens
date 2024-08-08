@@ -12,6 +12,14 @@ size = 1
 n = 4
 
 
+# Function to change the cell size and redraw
+# Called by: User pressing button
+# Calls: create_grid() and getBoard()
+def increaseSize():
+    global size
+    size += 1  # Increase grid size by 1
+    create_grid(n, getBoard())  # Recreate grid
+
 # Function to change the grid size and redraw
 # Called by: User pressing button
 # Calls: create_grid() and getBoard()
@@ -33,14 +41,24 @@ def create_grid(n, queens):
     # Destroy grid
     for widget in root.winfo_children():
         widget.destroy()
-    # Create increase button
-    incButton = tk.Button(root, text="Increase N", command=increaseN)
-    incButton.pack()
+    # Create button frame for increase and decrease N
+    buttonNFrame = tk.Frame(root)
+    buttonNFrame.pack()
     # Only allow decrease if n is greater than 4
     if n > 4:
-        # Create decrease button
-        decButton = tk.Button(root, text="Decrease N", command=decreaseN)
-        decButton.pack()
+        # Create decrease N button
+        decNButton = tk.Button(buttonNFrame, text="Decrease N", command=decreaseN)
+        decNButton.pack(side="left", padx=5)
+    # Create increase N button
+    incNButton = tk.Button(buttonNFrame, text="Increase N", command=increaseN)
+    incNButton.pack(side="left", padx=5)
+
+    # Create frame for increase size button
+    buttonSizeFrame = tk.Frame(root)
+    buttonSizeFrame.pack()
+    # Create increase size button
+    incSizeButton = tk.Button(buttonSizeFrame, text="Increase Size", command=increaseSize)
+    incSizeButton.pack(side="left", padx=5)
 
     # Create a frame to hold the grid
     frame = tk.Frame(root)
