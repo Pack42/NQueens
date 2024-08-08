@@ -20,6 +20,11 @@ def increaseSize():
     size += 1  # Increase grid size by 1
     create_grid(n, getBoard())  # Recreate grid
 
+def decreaseSize():
+    global size
+    size -= 1  # Decrease grid size by 1
+    create_grid(n, getBoard())  # Recreate grid
+
 # Function to change the grid size and redraw
 # Called by: User pressing button
 # Calls: create_grid() and getBoard()
@@ -56,6 +61,11 @@ def create_grid(n, queens):
     # Create frame for increase size button
     buttonSizeFrame = tk.Frame(root)
     buttonSizeFrame.pack()
+    # Only allow decrease if size is greater than 1
+    if size > 1:
+        # Create decrease N button
+        decSizeButton = tk.Button(buttonSizeFrame, text="Decrease Size", command=decreaseSize)
+        decSizeButton.pack(side="left", padx=5)
     # Create increase size button
     incSizeButton = tk.Button(buttonSizeFrame, text="Increase Size", command=increaseSize)
     incSizeButton.pack(side="left", padx=5)
