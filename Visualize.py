@@ -17,6 +17,8 @@ cell_width = 5
 cell_height = 2
 size = 1
 n = 4
+# Create nqueens variable to get board
+nq = NQueens()
 
 
 # Function to change the cell size and redraw
@@ -109,8 +111,6 @@ def getBoard():
     return board
 
 if __name__ == "__main__":
-    # Create nqueens variable to get board
-    nq = NQueens()
     # Call create grid
     create_grid(n, getBoard())
     # Start the Tkinter event loop
