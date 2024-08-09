@@ -53,10 +53,10 @@ def create_grid(n, queens):
     if n > 4:
         # Create decrease N button
         decNButton = tk.Button(buttonNFrame, text="Decrease N", command=decreaseN)
-        decNButton.pack(side="left", padx=5)
+        decNButton.pack(side="left", padx=5, pady=5)
     # Create increase N button
     incNButton = tk.Button(buttonNFrame, text="Increase N", command=increaseN)
-    incNButton.pack(side="left", padx=5)
+    incNButton.pack(side="left", padx=5, pady=5)
 
     # Create frame for increase size button
     buttonSizeFrame = tk.Frame(root)
