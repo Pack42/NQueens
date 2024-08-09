@@ -49,6 +49,7 @@ def decreaseN():
     create_grid(n, getBoard())  # Recreate grid
 
 # Function that creates grid
+# Called by buttons and MAIN
 def create_grid(n, queens):
     # Destroy grid
     for widget in root.winfo_children():
@@ -94,7 +95,7 @@ def create_grid(n, queens):
             cell = tk.Label(frame, width=cell_width * size, height=cell_height * size, bg=color, borderwidth=1, relief="solid")
             cell.grid(row=i, column=j, padx=1, pady=1)
 
-
+# Function to call functions from nqueens to get board
 def getBoard():
     # If n % 6 = 2 then call runTwo with param n
     if (n % 6 == 2):
@@ -107,9 +108,10 @@ def getBoard():
         board = nq.runOther(n)
     return board
 
-# Create nqueens variable to get board
-nq = NQueens()
-# Call create grid
-create_grid(n, getBoard())
-# Start the Tkinter event loop
-root.mainloop()
+if __name__ == "__main__":
+    # Create nqueens variable to get board
+    nq = NQueens()
+    # Call create grid
+    create_grid(n, getBoard())
+    # Start the Tkinter event loop
+    root.mainloop()
