@@ -1,3 +1,10 @@
+# TITLE: NQueens solver visualization
+# AUTHOR: Pack
+# CREATION DATE: 2023
+# LAST UPDATE: 8/9/2024
+# SUMMARY: Run file and press buttons to change board or tile size.
+#   Creates a visualization of an algorithm I made to solve the nqueens puzzle 
+
 from NQueens import NQueens
 import tkinter as tk
 
